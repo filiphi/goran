@@ -1,0 +1,18 @@
+include ../partials/header.jade
+
+body
+    div(class="g__layout__main-wrapper row")
+        div(class="medium-4 columns g__layout__column")
+            h1 Göran Persson
+            p om
+            h2 #{about}
+        div(class="medium-4 columns g__layout__column g__layout__feature-image")
+        div(class="medium-4 columns g__layout__column")
+            p #{text}
+            p
+                a(href="#{video}") Watch
+            p Listen
+                audio(src="#{audio}" preload="auto" controls)
+
+include ../partials/footer.jade
+
