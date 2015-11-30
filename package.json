@@ -7,6 +7,7 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "bunyan": "^1.5.1",
     "chai": "^3.4.1",
     "ejs": "2.3.3",
     "express": "4.13.3",
@@ -27,5 +28,8 @@
     "heroku",
     "express"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "rewire": "^2.5.0"
+  }
 }

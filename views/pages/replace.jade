@@ -1,0 +1,16 @@
+include ../partials/header.jade
+
+body
+    div(class="g__layout__main-wrapper row")
+        div(class="small-12 medium-4 columns g__layout__column")
+            h1= quote.about
+            p= quote.text
+        div(class="small-12 medium-4 columns g__layout__column g__layout__feature-image")
+        div(class="small-12 medium-4 columns g__layout__column")
+            p
+                for val, index in personalize.replace
+                    label Ersätt #{val.value} med:
+                    input(type='text', placeholder="#{val.value}")
+
+include ../partials/footer.jade
+
