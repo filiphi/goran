@@ -1,16 +1,20 @@
 include ../partials/header.jade
 
-body
+body(data-page='replace')
+    div#show-quote.reveal-modal(data-reveal,aria-labelledby="modalTitle", aria-hidden="true", role="dialog")
+        p#adapted-quote-container.modal-content
+        a.close-reveal-modal(aria-label="Close")&#215;
     div(class="g__layout__main-wrapper row")
         div(class="small-12 medium-4 columns g__layout__column")
             h1= quote.about
-            p= quote.text
+            p(data-quote)= quote.text
         div(class="small-12 medium-4 columns g__layout__column g__layout__feature-image")
         div(class="small-12 medium-4 columns g__layout__column")
-            p
+            form#personalize-quote
                 for val, index in personalize.replace
-                    label Ersätt #{val.value} med:
-                    input(type='text', placeholder="#{val.value}")
+                    label(for='personalize-quote-#{val.value}') Ersätt #{val.value} med:
+                    input(name='[personalize-quote][]',id='personalize-quote-#{val.value}',type='text', placeholder="#{val.value}")
+                input(type='submit')
 
 include ../partials/footer.jade
 

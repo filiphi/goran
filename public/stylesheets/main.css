@@ -6,6 +6,11 @@ p, h1, h2, h3, h4, h5, h6 {
     color: white;
 }
 
+p.modal-content {
+    color: black;
+    padding: 30px;
+}
+
 .g__layout__feature-image {
     background-image: url("/assets/goran.jpg");
     background-repeat: no-repeat;
