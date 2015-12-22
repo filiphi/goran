@@ -1,6 +1,7 @@
-define(['jquery', 'foundation'], function ($) {
+define(['vue', 'jquery', 'foundation'], function (Vue, $) {
     var settings = {
         quote: '',
+        newQuote: '',
         wordsToExchange: {},
         isOn: false,
         $form: ''
@@ -24,7 +25,6 @@ define(['jquery', 'foundation'], function ($) {
     var getWords = function () {
         var $form  = getForm();
         var words  = {};
-        console.log('here');
 
         $form.find('input[type=text]').each(function(index) {
             var original    = $(this).attr('placeholder');
@@ -38,7 +38,7 @@ define(['jquery', 'foundation'], function ($) {
         });
 
         settings.wordsToExchange = words;
-        console.log(settings.wordsToExchange);
+
     };
 
     var replaceWord = function(original, replaceWith, quote) {
@@ -75,28 +75,23 @@ define(['jquery', 'foundation'], function ($) {
             getWords();
 
             $form = getForm();
-            $form.find('input[type=text]').on('keyup', Foundation.utils.debounce(function(e){
-                getWords();
-            }, 300));
 
-            settings.quote = $('p[data-quote]').html();
+            settings.quote = $('#show-quote').data('quote');
+            settings.newQuote = settings.quote;
 
-            $form.find("input[type=submit]").click(function(e) {
-                e.preventDefault();
-                self.replace();
+            new Vue({
+                el: '#personalize-quote',
+                data: {
+                    newQuote: settings.newQuote
+                },
+                methods: {
+                    replaceWord: function () {
+                        getWords();
+                        this.newQuote = adaptQuote(settings.wordsToExchange, settings.quote);
+                    }
+                }
             });
 
-        },
-        replace: function() {
-            var quote = settings.quote;
-            var words = settings.wordsToExchange;
-
-            quote = adaptQuote(words, quote);
-
-            $('#show-quote #adapted-quote-container').html(quote);
-            $('#show-quote').foundation('reveal', 'open');
         }
-
-
     }
 });
