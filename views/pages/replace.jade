@@ -7,11 +7,13 @@ body(data-page='replace')
             h1= quote.about
         div(class="small-12 medium-4 medium-push-1 columns g__layout__column")
             p#show-quote(data-quote="#{quote.text}",  v-model="newQuote") {{ newQuote }}
+            p
+                a(class="twitter-share-button", href="https://twitter.com/intent/tweet?text=LåtGöranDissaDig", data-size="large") Tweet
         div#personalize(class="small-12 medium-3 medium-push-1 columns g__layout__column")
             form#personalize-quote
                 for val, index in personalize.replace
                     label(for='personalize-quote-#{val.value}') Ersätt #{val.value} med:
-                    input(name='[personalize-quote][]',id='personalize-quote-#{val.value}',type='text', placeholder="#{val.value}",  v-on:keyup="replaceWord")
+                    input(name='[personalize-quote][]',id='personalize-quote-#{val.value}',type='text', placeholder="#{val.value}",  v-on:keyup="replaceWord", v-on:change="replaceWord")
 
 include ../partials/footer.jade
 
